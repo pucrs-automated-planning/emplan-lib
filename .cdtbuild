@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?fileVersion 3.1.0?>
+
+<ManagedProjectBuildInfo>
+<project id="EmPlanLib.cdt.managedbuild.target.gnu.cygwin.so.315741256" name="Shared Library (Gnu on Windows)" projectType="cdt.managedbuild.target.gnu.cygwin.so">
+<configuration artifactExtension="dll" artifactName="emplan" cleanCommand="rm -rf" description="" errorParsers="org.eclipse.cdt.core.MakeErrorParser;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.GASErrorParser" id="cdt.managedbuild.config.gnu.cygwin.so.debug.1354713824" name="Debug" parent="cdt.managedbuild.config.gnu.cygwin.so.debug">
+<toolChain id="cdt.managedbuild.toolchain.gnu.cygwin.so.debug.937484955" name="GCC Tool Chain" superClass="cdt.managedbuild.toolchain.gnu.cygwin.so.debug">
+<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.cygwin.so.debug.1712038600" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.cygwin.so.debug">
+<option id="gnu.cpp.compiler.option.include.paths.2030367396" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
+<listOptionValue builtIn="false" value="&quot;${workspace_loc:/ParserLibrary/src}&quot;"/>
+</option>
+</tool>
+<tool id="cdt.managedbuild.tool.gnu.c.compiler.cygwin.so.debug.1803891914" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.cygwin.so.debug"/>
+<tool id="cdt.managedbuild.tool.gnu.c.linker.cygwin.so.debug.27203243" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.cygwin.so.debug"/>
+<tool id="cdt.managedbuild.tool.gnu.cpp.linker.cygwin.so.debug.2050707294" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.cygwin.so.debug">
+<option id="gnu.cpp.link.option.libs.1022342209" superClass="gnu.cpp.link.option.libs" valueType="libs">
+<listOptionValue builtIn="false" value="ParserLibrary"/>
+</option>
+<option id="gnu.cpp.link.option.paths.5284170" superClass="gnu.cpp.link.option.paths" valueType="stringList">
+<listOptionValue builtIn="false" value="&quot;${workspace_loc:/ParserLibrary/Debug}&quot;"/>
+</option>
+</tool>
+<tool id="cdt.managedbuild.tool.gnu.assembler.cygwin.so.debug.239965249" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.cygwin.so.debug"/>
+<macros/>
+</toolChain>
+</configuration>
+<configuration artifactExtension="dll" artifactName="EmPlanLib" cleanCommand="rm -rf" description="" errorParsers="org.eclipse.cdt.core.MakeErrorParser;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.GASErrorParser" id="cdt.managedbuild.config.gnu.cygwin.so.release.1117759222" name="Release" parent="cdt.managedbuild.config.gnu.cygwin.so.release">
+<toolChain id="cdt.managedbuild.toolchain.gnu.cygwin.so.release.1888431261" name="GCC Tool Chain" superClass="cdt.managedbuild.toolchain.gnu.cygwin.so.release">
+<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.cygwin.so.release.597598301" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.cygwin.so.release"/>
+<tool id="cdt.managedbuild.tool.gnu.c.compiler.cygwin.so.release.57303446" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.cygwin.so.release"/>
+<tool id="cdt.managedbuild.tool.gnu.c.linker.cygwin.so.release.780646261" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.cygwin.so.release"/>
+<tool id="cdt.managedbuild.tool.gnu.cpp.linker.cygwin.so.release.2052454087" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.cygwin.so.release"/>
+<tool id="cdt.managedbuild.tool.gnu.assembler.cygwin.so.release.857093615" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.cygwin.so.release"/>
+</toolChain>
+</configuration>
+<macros/>
+</project>
+</ManagedProjectBuildInfo>
