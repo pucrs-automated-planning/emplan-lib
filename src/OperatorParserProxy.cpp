@@ -40,6 +40,7 @@ bool OperatorParserProxy::parse(string sFilename)
 			PRINTL("Teste 1")
 			n = parser.yyparse();
 			//lexer.yyin=&cin;
+			fclose(yyin);
 		}else
 		{
 			WRITELN("Cannot open file: \""<< sFilename << "\".");

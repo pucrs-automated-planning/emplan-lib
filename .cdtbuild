@@ -24,13 +24,25 @@
 <macros/>
 </toolChain>
 </configuration>
-<configuration artifactExtension="dll" artifactName="EmPlanLib" cleanCommand="rm -rf" description="" errorParsers="org.eclipse.cdt.core.MakeErrorParser;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.GASErrorParser" id="cdt.managedbuild.config.gnu.cygwin.so.release.1117759222" name="Release" parent="cdt.managedbuild.config.gnu.cygwin.so.release">
+<configuration artifactExtension="dll" artifactName="emplan" cleanCommand="rm -rf" description="" errorParsers="org.eclipse.cdt.core.MakeErrorParser;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.GASErrorParser" id="cdt.managedbuild.config.gnu.cygwin.so.release.1117759222" name="Release" parent="cdt.managedbuild.config.gnu.cygwin.so.release">
 <toolChain id="cdt.managedbuild.toolchain.gnu.cygwin.so.release.1888431261" name="GCC Tool Chain" superClass="cdt.managedbuild.toolchain.gnu.cygwin.so.release">
-<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.cygwin.so.release.597598301" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.cygwin.so.release"/>
+<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.cygwin.so.release.597598301" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.cygwin.so.release">
+<option id="gnu.cpp.compiler.option.include.paths.2087741121" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
+<listOptionValue builtIn="false" value="&quot;${workspace_loc:/ParserLibrary/src}&quot;"/>
+</option>
+</tool>
 <tool id="cdt.managedbuild.tool.gnu.c.compiler.cygwin.so.release.57303446" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.cygwin.so.release"/>
 <tool id="cdt.managedbuild.tool.gnu.c.linker.cygwin.so.release.780646261" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.cygwin.so.release"/>
-<tool id="cdt.managedbuild.tool.gnu.cpp.linker.cygwin.so.release.2052454087" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.cygwin.so.release"/>
+<tool id="cdt.managedbuild.tool.gnu.cpp.linker.cygwin.so.release.2052454087" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.cygwin.so.release">
+<option id="gnu.cpp.link.option.libs.547877208" superClass="gnu.cpp.link.option.libs" valueType="libs">
+<listOptionValue builtIn="false" value="ParserLibrary"/>
+</option>
+<option id="gnu.cpp.link.option.paths.712389249" superClass="gnu.cpp.link.option.paths" valueType="stringList">
+<listOptionValue builtIn="false" value="&quot;${workspace_loc:/ParserLibrary/Release}&quot;"/>
+</option>
+</tool>
 <tool id="cdt.managedbuild.tool.gnu.assembler.cygwin.so.release.857093615" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.cygwin.so.release"/>
+<macros/>
 </toolChain>
 </configuration>
 <macros/>

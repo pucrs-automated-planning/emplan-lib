@@ -10,7 +10,14 @@ JNIEXPORT jboolean JNICALL Java_org_meneguzzi_jemplan_EMPlan_emplan
 		
 		CommandLineOptions options;
 		options.iPlanner = CommandLineOptions::GRAPHPLAN;
-		//options.sInputFile = env->GetStringUTFChars(sInputfile, JNI_TRUE);
+		jboolean isCopy;
+		options.sInputFile = env->GetStringUTFChars(sInputfile, &isCopy);
+		
+		options.sOutputFile = env->GetStringUTFChars(sOutputfile, &isCopy);
+		
+		options.sStatistics = env->GetStringUTFChars(sStats, &isCopy);
+		
+		options.sGrounds = env->GetStringUTFChars(sGrounds, &isCopy);
 		
 		Starter s(options);
 		int iRes=s.start();
