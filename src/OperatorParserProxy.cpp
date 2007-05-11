@@ -46,7 +46,7 @@ bool OperatorParserProxy::parse(string sFilename)
 			WRITELN("Cannot open file: \""<< sFilename << "\".");
 			n = YYEXIT_FAILURE;
 		}
-		delete yyin;
+		//delete yyin;
 	}
 	else
 	{

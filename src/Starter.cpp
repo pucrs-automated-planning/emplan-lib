@@ -89,6 +89,8 @@ bool Starter::runGraphplan(PredicateInstanceVector &pivStart,
 			OperatorInstanceVector oiv=pp->toVector();
 			string sOut=pp->toString(oiv);
 			out << sOut;
+			out.flush();
+			out.close();
 		}
 	}else
 	{
@@ -237,6 +239,7 @@ int Starter::start()
 			ofstream outGrounds(options.sGrounds.c_str());
 			outGrounds << s;
 			outGrounds.flush();
+			outGrounds.close();
 		}
 
 		//After that we should go on and convert the start conditions and the goals
