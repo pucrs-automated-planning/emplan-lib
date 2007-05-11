@@ -14,15 +14,27 @@ JNIEXPORT jboolean JNICALL Java_org_meneguzzi_jemplan_EMPlan_emplan
 		options.sInputFile = env->GetStringUTFChars(sInputfile, &isCopy);
 		
 		options.sOutputFile = env->GetStringUTFChars(sOutputfile, &isCopy);
+		if(!options.sOutputFile.empty()) {
+			options.bWritePlan = true;
+			options.bScreenPlan = false;
+		}
+		
+		//cout << "Output file is " << options.sOutputFile << endl;
 		
 		options.sStatistics = env->GetStringUTFChars(sStats, &isCopy);
+		if(!options.sStatistics.empty()) {
+			options.bWriteStats = true;
+		}
 		
 		options.sGrounds = env->GetStringUTFChars(sGrounds, &isCopy);
+		if(!options.sGrounds.empty()) {
+			options.bWriteGrounds = true;
+		}
 		
 		Starter s(options);
 		int iRes=s.start();
 		
-		if(iRes) {
+		if(!iRes) {
 			return JNI_TRUE;
 		} else {
 			return JNI_FALSE;
