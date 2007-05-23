@@ -3,6 +3,13 @@
 #include "Starter.h"
 #include "TimeTracker.h"
 
+#include <sstream>
+using std::istringstream;
+using std::ostringstream;
+
+#include <string>
+using std::string;
+
 JNIEXPORT jboolean JNICALL Java_org_meneguzzi_jemplan_EMPlan_emplan
 	(JNIEnv *env, jobject obj, jstring sInputfile, jstring sOutputfile, 
 	jstring sPlanner, jstring sStats, jstring sGrounds) {
@@ -41,3 +48,28 @@ JNIEXPORT jboolean JNICALL Java_org_meneguzzi_jemplan_EMPlan_emplan
 		}
 	}
 
+JNIEXPORT jstring JNICALL Java_org_meneguzzi_jemplan_EMPlan_emplanStream
+  (JNIEnv *env, jobject obj, jstring jsInput) {
+  	CommandLineOptions options;
+	options.iPlanner = CommandLineOptions::GRAPHPLAN;
+	jboolean isCopy;
+	options.bWritePlan = true;
+	options.bScreenPlan = false;
+	
+ 	istringstream input(env->GetStringUTFChars(jsInput, &isCopy));
+ 	ostringstream output;
+ 	
+ 	//WRITE("Input is " << input.str());
+  	
+  	Starter s(options);
+  	int iRes = s.start(input, output);
+  	
+  	jstring jsOutput = NULL;
+  	
+  	if(!iRes) {
+  		string s = output.str();
+  		jsOutput = env->NewStringUTF(s.c_str());
+  	}
+  	
+  	return jsOutput;
+  }

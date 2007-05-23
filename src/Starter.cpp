@@ -126,6 +126,78 @@ bool Starter::runGraphplan(PredicateInstanceVector &pivStart,
 }
 
 //////////////////////////////////////////////////////////////////////
+// Runs the Graphplan algorithm, using a stream for output
+//////////////////////////////////////////////////////////////////////
+bool Starter::runGraphplan(PredicateInstanceVector &pivStart, 
+				  PredicateInstanceVector &pivGoal, 
+				  OperatorInstanceVector &oivOperators,
+				  ostream &output)
+{
+	TimeTracker tt;
+	
+	GraphplanPlanner *gp=NULL;
+	bool bPlanSuccessfull;
+
+	gp = new GraphplanPlanner(pivStart, pivGoal, oivOperators, options.bUseMemoization);
+	tt.startTracker();
+	bPlanSuccessfull=gp->plan();
+	tt.stopTracker();
+		
+	//If the planning was sucessfull we should go on and write the plan wherever the options
+	//tell us to
+	if(bPlanSuccessfull)
+	{
+		WRITELN("Planning successful");
+
+		//ParallelPlan pp=gp.getParallelPlan();
+		GroundPlan *pp=gp->getPlan();
+		if(options.bScreenPlan)
+		{
+			WRITELN("Plan:");
+			WRITELN(pp->toString());
+		}
+		if(options.bWritePlan)
+		{
+			//WRITELN("Writing plan to stream");
+			//ofstream out(options.sOutputFile.c_str());
+			OperatorInstanceVector oiv=pp->toVector();
+			string sOut=pp->toString(oiv);
+			output << sOut;
+		}
+	}else
+	{
+		//If not, just inform the user
+		WRITELN("No plan was found for the goals proposed.");
+	}
+	
+	string sPlanTime="Planning took "+tt.toString();
+	WRITELN(sPlanTime);
+
+	//After everything has been completed, get the statistics and print them
+	if(options.bWriteStats)
+	{
+		WRITELN("Writing statistics to " << options.sStatistics);
+		ofstream outStats(options.sStatistics.c_str());
+		outStats << gp->getStats();
+		//outStats << sParseTime << endl;
+		//outStats << sGroundTime << endl;
+		outStats << sPlanTime << endl;
+	}
+
+	if(options.bDrawGraph)
+	{
+		WRITELN("Drawing graph to " << options.sDrawGraphFile);
+		ofstream outDraw(options.sDrawGraphFile.c_str());
+		gp->drawGraph(1, outDraw);
+		outDraw.flush();
+	}
+
+	delete gp;
+
+	return bPlanSuccessfull;
+}
+
+//////////////////////////////////////////////////////////////////////
 // Runs the Pop algorithm
 //////////////////////////////////////////////////////////////////////
 bool Starter::runPopPlanner(PredicateVector &pvStart, PredicateVector &pvGoal, OperatorVector &ovOpers)
@@ -254,6 +326,78 @@ int Starter::start()
 		{
 			case 1:
 				bPlanSuccessfull=runGraphplan(pivStart, pivGoal, oivOperators);
+				break;
+			case 2:
+			{
+				PredicateVector pvStart = parser.getStart();
+				PredicateVector pvGoal = parser.getGoal();
+				OperatorVector opOps = parser.getOperators();
+				bPlanSuccessfull=runPopPlanner(pvStart, pvGoal, opOps);
+			}
+				break;
+			default:
+				bPlanSuccessfull=false;
+				break;
+
+		}
+
+		return !bPlanSuccessfull;
+	}else
+	{
+		return 1;
+	}
+}
+
+int Starter::start(istream &input, ostream &output) {
+	//If everything went ok until here, create the parser
+	OperatorParserProxy parser;
+	//And parse the input files while keeping track of the required time.
+	//WRITELN(parser.toString());
+	//WRITELN("Parsing " << options.sInputFile);
+	TimeTracker tt;
+	tt.startTracker();
+	bool bParseSuccessful=parser.parse(input);
+	tt.stopTracker();
+	string sParseTime="Parsing took " + tt.toString();
+	WRITELN(sParseTime);
+
+	//If the parser worked ok, then go on and start the planner
+	if(bParseSuccessful)
+	{
+		//If we are running a ground planner then we should create the entire Herbrand Universe
+		//from the non-ground Operator definitions
+		tt.startTracker();
+
+		SymbolTable *st=parser.getSymbolTable();
+		TermSignatureMap tsm = st->getTermSignatures();
+		PredicateSignatureMap psm = st->getPredicateSignatures();
+		OperatorSignatureMap osm = st->getOperatorSignatures();
+		GroundDataTable gdTable(tsm, psm, osm);
+		tt.stopTracker();
+		string sGroundTime="Creating ground instances took " + tt.toString();
+		WRITELN(sGroundTime);
+		if(options.bWriteGrounds)
+		{
+			string s=gdTable.toString();
+			WRITELN("Writing ground instances to "<< options.sGrounds);
+			ofstream outGrounds(options.sGrounds.c_str());
+			outGrounds << s;
+			outGrounds.flush();
+			outGrounds.close();
+		}
+
+		//After that we should go on and convert the start conditions and the goals
+		//into the Ground references
+		PredicateInstanceVector pivStart=gdTable.convertPredicates(parser.getStart());
+		PredicateInstanceVector pivGoal=gdTable.convertPredicates(parser.getGoal());
+		OperatorInstanceVector oivOperators=gdTable.getOperators();
+
+		bool bPlanSuccessfull;
+
+		switch(options.iPlanner)
+		{
+			case 1:
+				bPlanSuccessfull=runGraphplan(pivStart, pivGoal, oivOperators, output);
 				break;
 			case 2:
 			{

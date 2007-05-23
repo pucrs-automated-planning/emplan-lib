@@ -15,6 +15,7 @@
 #include <iostream>
 using std::cin;
 using std::cerr;
+using std::istream;
 
 #include <string>
 using std::string;
@@ -40,6 +41,7 @@ public:
 
 	//Parses the file given as input and returns if it has been sucessfull
 	bool parse(string sFilename);
+	bool parse(istream &input);
 
 	//Returns 
 	PredicateVector getStart();

@@ -17,6 +17,9 @@ using std::cout;
 using std::cerr;
 using std::endl;
 
+using std::istream;
+using std::ostream;
+
 #include <fstream>
 using std::ifstream;
 using std::ofstream;
@@ -37,6 +40,12 @@ protected:
 	bool runGraphplan(PredicateInstanceVector &pivStart, 
 				  PredicateInstanceVector &pivGoal, 
 				  OperatorInstanceVector &oivOperators);
+				  
+	bool runGraphplan(PredicateInstanceVector &pivStart, 
+				  PredicateInstanceVector &pivGoal, 
+				  OperatorInstanceVector &oivOperators,
+				  ostream &output);
+	
 	bool runPopPlanner(PredicateVector &pvStart,
 					PredicateVector &pvGoal,
 					OperatorVector &ovOperators);
@@ -46,6 +55,8 @@ public:
 	virtual ~Starter();
 
 	virtual int start();
+	//A stream based start method, to avoid using files directly
+	virtual int start(istream &input, ostream &output);
 
 	virtual Starter &operator=(Starter &sRight);
 };

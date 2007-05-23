@@ -31,16 +31,17 @@ bool OperatorParserProxy::parse(string sFilename)
 {
 	if(bStartUp)
 	{
-		//ifstream *yyin=new ifstream(sFilename.c_str());
-		FILE *yyin = fopen(sFilename.c_str(),"r");
-		//if(!yyin->fail())
-		if(yyin)
+		ifstream *yyin=new ifstream(sFilename.c_str());
+		//FILE *yyin = fopen(sFilename.c_str(),"r");
+		if(!yyin->fail())
+		//if(yyin)
 		{
 			lexer.yyin=yyin;
 			PRINTL("Teste 1")
 			n = parser.yyparse();
 			//lexer.yyin=&cin;
-			fclose(yyin);
+			//fclose(yyin);
+			yyin->close();
 		}else
 		{
 			WRITELN("Cannot open file: \""<< sFilename << "\".");
@@ -50,6 +51,30 @@ bool OperatorParserProxy::parse(string sFilename)
 	}
 	else
 	{
+		cerr << "Error initializing parser" << endl;
+		return false;
+	}
+
+	if(n==YYEXIT_SUCCESS)
+	{
+		WRITELN("Parse Process Complete");
+		//Do planning now
+		return true;
+	}else
+		return false;
+}
+
+//A helper method that reads the problem from any stream
+//This replication of code is nasty, and I will go to hell
+//because of it, but at least I will have the results for
+//a paper
+bool OperatorParserProxy::parse(istream &input) {
+	
+	if(bStartUp) {
+		lexer.yyin=&input;
+		PRINTL("Teste 1")
+		n = parser.yyparse();
+	} else {
 		cerr << "Error initializing parser" << endl;
 		return false;
 	}
