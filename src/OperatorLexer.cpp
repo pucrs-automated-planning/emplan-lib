@@ -33,7 +33,7 @@ using namespace std;
 using namespace yl;
 #endif
 
-#line 1 ".\\OperatorLexer.l"
+#line 1 "OperatorLexer.l"
 
 /****************************************************************************
 OperatorLexer.l
@@ -56,7 +56,7 @@ using namespace std;
 using namespace yl;
 #endif
 
-#include ".\OperatorLexer.h"
+#include "OperatorLexer.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // constructor
@@ -64,7 +64,7 @@ using namespace yl;
 YYLEXERNAME::YYLEXERNAME()
 {
 	yytables();
-#line 35 ".\\OperatorLexer.l"
+#line 35 "OperatorLexer.l"
 
 	// place any extra initialisation code here
 	yyst=new SymbolTable();
@@ -77,7 +77,7 @@ YYLEXERNAME::YYLEXERNAME()
 
 YYLEXERNAME::~YYLEXERNAME()
 {
-#line 41 ".\\OperatorLexer.l"
+#line 41 "OperatorLexer.l"
 
 	// place any extra cleanup code here
 	delete yyst;
@@ -148,7 +148,7 @@ void YYLEXERNAME::yyunput(int ch)
 
 int YYLEXERNAME::yyaction(int action)
 {
-#line 62 ".\\OperatorLexer.l"
+#line 62 "OperatorLexer.l"
 
 	// extract yylval for use later on in actions
 	YYSTYPE YYFAR& yylval = *(YYSTYPE YYFAR*)yyparserptr->yylvalptr;
@@ -158,49 +158,49 @@ int YYLEXERNAME::yyaction(int action)
 	switch (action) {
 	case 1:
 		{
-#line 69 ".\\OperatorLexer.l"
+#line 69 "OperatorLexer.l"
 PRINT(" TK_OPERATOR ") return OPERATOR;
 #line 164 "OperatorLexer.cpp"
 		}
 		break;
 	case 2:
 		{
-#line 70 ".\\OperatorLexer.l"
+#line 70 "OperatorLexer.l"
 PRINT(" TK_PRECONDS ") return PRECONDS;
 #line 171 "OperatorLexer.cpp"
 		}
 		break;
 	case 3:
 		{
-#line 71 ".\\OperatorLexer.l"
+#line 71 "OperatorLexer.l"
 PRINT(" TK_EFFECTS ") return EFFECTS;
 #line 178 "OperatorLexer.cpp"
 		}
 		break;
 	case 4:
 		{
-#line 72 ".\\OperatorLexer.l"
+#line 72 "OperatorLexer.l"
 PRINT(" TK_START ") return START;
 #line 185 "OperatorLexer.cpp"
 		}
 		break;
 	case 5:
 		{
-#line 73 ".\\OperatorLexer.l"
+#line 73 "OperatorLexer.l"
 PRINT(" TK_GOAL ") return GOAL;
 #line 192 "OperatorLexer.cpp"
 		}
 		break;
 	case 6:
 		{
-#line 74 ".\\OperatorLexer.l"
+#line 74 "OperatorLexer.l"
 PRINT(" TK_NOT ") return NOT;
 #line 199 "OperatorLexer.cpp"
 		}
 		break;
 	case 7:
 		{
-#line 76 ".\\OperatorLexer.l"
+#line 76 "OperatorLexer.l"
 PRINT(" TK_IDENTIFIER ") 
 												yylval.symbol=yytext;
 												return IDENTIFIER;
@@ -209,7 +209,7 @@ PRINT(" TK_IDENTIFIER ")
 		break;
 	case 8:
 		{
-#line 80 ".\\OperatorLexer.l"
+#line 80 "OperatorLexer.l"
 PRINT(" TK_NUMBER ")
 												yylval.symbol=yytext;
 												return NUMBER;
@@ -218,7 +218,7 @@ PRINT(" TK_NUMBER ")
 		break;
 	case 9:
 		{
-#line 83 ".\\OperatorLexer.l"
+#line 83 "OperatorLexer.l"
 PRINT(" TK_STRING")
 												yylval.symbol=yytext;
 												return STRING;
@@ -227,7 +227,7 @@ PRINT(" TK_STRING")
 		break;
 	case 10:
 		{
-#line 86 ".\\OperatorLexer.l"
+#line 86 "OperatorLexer.l"
 PRINT(" TK_STRING")
 												yylval.symbol=yytext;
 												return STRING;
@@ -236,7 +236,7 @@ PRINT(" TK_STRING")
 		break;
 	case 11:
 		{
-#line 89 ".\\OperatorLexer.l"
+#line 89 "OperatorLexer.l"
 PRINT(" TK_NUMBER ")
 												yylval.symbol=yytext;
 												return NUMBER;
@@ -245,7 +245,7 @@ PRINT(" TK_NUMBER ")
 		break;
 	case 12:
 		{
-#line 92 ".\\OperatorLexer.l"
+#line 92 "OperatorLexer.l"
 PRINT(" TK_NUMBER ")
 												yylval.symbol=yytext;
 												return NUMBER;
@@ -254,63 +254,63 @@ PRINT(" TK_NUMBER ")
 		break;
 	case 13:
 		{
-#line 96 ".\\OperatorLexer.l"
+#line 96 "OperatorLexer.l"
 ;
 #line 260 "OperatorLexer.cpp"
 		}
 		break;
 	case 14:
 		{
-#line 98 ".\\OperatorLexer.l"
+#line 98 "OperatorLexer.l"
 BEGIN(COMMENT);
 #line 267 "OperatorLexer.cpp"
 		}
 		break;
 	case 15:
 		{
-#line 99 ".\\OperatorLexer.l"
+#line 99 "OperatorLexer.l"
 BEGIN(0);
 #line 274 "OperatorLexer.cpp"
 		}
 		break;
 	case 16:
 		{
-#line 100 ".\\OperatorLexer.l"
+#line 100 "OperatorLexer.l"
 ;
 #line 281 "OperatorLexer.cpp"
 		}
 		break;
 	case 17:
 		{
-#line 101 ".\\OperatorLexer.l"
+#line 101 "OperatorLexer.l"
 ;
 #line 288 "OperatorLexer.cpp"
 		}
 		break;
 	case 18:
 		{
-#line 102 ".\\OperatorLexer.l"
+#line 102 "OperatorLexer.l"
 ;
 #line 295 "OperatorLexer.cpp"
 		}
 		break;
 	case 19:
 		{
-#line 104 ".\\OperatorLexer.l"
+#line 104 "OperatorLexer.l"
 BEGIN(LINECOMMENT);
 #line 302 "OperatorLexer.cpp"
 		}
 		break;
 	case 20:
 		{
-#line 105 ".\\OperatorLexer.l"
+#line 105 "OperatorLexer.l"
 BEGIN(0);
 #line 309 "OperatorLexer.cpp"
 		}
 		break;
 	case 21:
 		{
-#line 107 ".\\OperatorLexer.l"
+#line 107 "OperatorLexer.l"
 PRINT(yytext[0]) return yytext[0];
 #line 316 "OperatorLexer.cpp"
 		}
@@ -959,7 +959,7 @@ void YYLEXERNAME::yytables()
 	};
 	yybackup = backup;
 }
-#line 109 ".\\OperatorLexer.l"
+#line 109 "OperatorLexer.l"
 
 
 /////////////////////////////////////////////////////////////////////////////

@@ -33,7 +33,7 @@ using namespace std;
 using namespace yl;
 #endif
 
-#line 1 ".\\OperatorParser.y"
+#line 1 "OperatorParser.y"
 
 /****************************************************************************
 OperatorParser.y
@@ -64,7 +64,7 @@ using namespace std;
 using namespace yl;
 #endif
 
-#include ".\OperatorParser.h"
+#include "OperatorParser.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // constructor
